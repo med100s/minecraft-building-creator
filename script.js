@@ -61,8 +61,7 @@ const materials = {
 
 }
 
-let layer = 1
-let layer_plus = layer + 1
+let layer = 1 
 let level = 61
 // for(let layer in object){
 for (; layer <= Object.keys(object).length; layer++) { 
@@ -70,24 +69,20 @@ for (; layer <= Object.keys(object).length; layer++) {
 
             for (let prop2 in object[layer][prop]) {
 
-                command += `
-            [{id:falling_block,Block:command_block,Time:1,TileEntityData:
-            {Command:"/setblock ~${object[layer][prop][prop2]["x"]} ${level + layer} ~${object[layer][prop][prop2]["z"]} ${materials[object[layer][prop][prop2]["name"]] ? materials[object[layer][prop][prop2]["name"]] : 'grass'}"},Passengers:     
-            `
+                command += `/setblock ~${object[layer][prop][prop2]["x"]} ${level + layer} ~${object[layer][prop][prop2]["z"]} ${materials[object[layer][prop][prop2]["name"]] ? materials[object[layer][prop][prop2]["name"]] : 'grass'};`
 
                 console.log(object[layer][prop][prop2]["x"], object[layer][prop][prop2]["z"], layer)
                 brackets_command_part += `}]`
                 num += 1
             } 
     }
-    // }
+    }
 
-    let full_command = (first_command_part + command + last_command_part + brackets_command_part + "}")
+    let full_command = ( command )
     // console.log(first_command_part, command, last_command_part, brackets_command_part, "}")
 
     fs = require('fs');
-    fs.writeFile(`helloworld${layer}.txt`, full_command, function (err) {
+    fs.writeFile(`full script.txt`, full_command, function (err) {
         if (err) return console.log(err);
         console.log('Hello World > helloworld.txt');
-    });
-}
+    }); 
